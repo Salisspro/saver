@@ -20,7 +20,8 @@ export default function Header() {
 
 
   return (
-    <div className="flex px-5 bg-[#ff9100] mb-[100px] text-slate-900 shadow-[0_0_10px_black] header items-center justify-between space-x-10 p-5">
+    <div 
+    className="bg-blue-500 flex px-5 mb-[100px] text-slate-900 shadow-[0_0_10px_black] items-center justify-between space-x-10 p-5">
       <div>
         <img
           className='w-[200px] md:w-[300px]'

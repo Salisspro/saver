@@ -4,6 +4,7 @@ import { db } from '../configs/fireBase'
 import { collection, deleteDoc, doc, getDocs, addDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import CANCEL from '../icon/red-rejection-icon-render-3d-rejected-sign-check-mark-cross-sign-can-be-used-as-symbols-of-wrong-close-deny-etc-created-for-mobile-web-decor-application-illustration-with-clipping-path-png.png'
+import { TextField, Button, Typography } from '@mui/material'
 
 export default function FireStore() {
    const [dataState, setDataState] = useState([])
@@ -25,7 +26,7 @@ export default function FireStore() {
             id: doc.id
          }))
          setDataState(dataRef)
-         console.log(dataRef);
+         // console.log(dataRef);
       } catch (err) {
          console.error('err ', err);
       }
@@ -58,34 +59,100 @@ export default function FireStore() {
    }
 
    return (
-      <div className='container mt-[5rem] grid px-3 max-w-[100%] mx-auto p-10 border-t-[3px]'>
+      <div className='bg-cover container mt-[5rem] grid px-3 max-w-[100%] mx-auto p-10 border-t-[1px] border-orange-400'>
 
-         <div className='grid'>
+         <div className='grid '>
 
             <h1 className='mb-5 text-2xl font-mono text-slate-200'>Data State: {dataState.length}</h1>
             {/* <h1>Add Data: {addDate}</h1> */}
-
-            <input
-               className='addInput'
-               value={newName}
+            <TextField
+               label='Add Name'
+               variant='standard'
                onChange={(e) => setNewName(e.target.value)}
-               type="text" name="" id="" placeholder='Your User Name' />
+               value={newName}
 
-            <input
-               className='addInput'
+            />
+
+            <TextField
+               sx={{ mt: 5, mb: 5, border: 'none' }}
+               label='City Name'
+               variant='standard'
                value={newCity}
                onChange={(e) => setNewCity(e.target.value)}
-               type="text" name="" id="" placeholder='Your City Name' />
-            {/* <input type="date" name="" id="" /> */}
-            <button
-               className='text-slate-100 bg-slate-700 p-4'
-               onClick={handleAdd}>Add</button>
+
+            />
+
+            <Button
+               onClick={handleAdd}
+               color='info'
+               sx={{ px: 5, mb: 5, p: 2, border: 'none' }}
+               variant='contained'>Add to Saver</Button>
+
+         </div>
+         <div className='flex items-center flex-wrap md:grid-cols-3 '>
+
+            {
+               dataState.map((item) => (
+                  <div
+                     className='grid md:grid-cols-3 font-mono my-5 mx-5 border-2 border-slate-900 bg-white rounded-md p-5 cursor-pointer hover:bg-slate-200 transition-all duration-300 '
+                     key={item}>
+
+                        <div>
+                           <Typography
+
+                              variant='body1'>
+                              NAME: {item.name}
+                           </Typography>
+
+                           <Typography variant='body1'> CITY: {item.city}</Typography>
+                           <del>User ID: {item.id}</del>
+
+                        </div>
+
+
+                        <div>
+
+                           <p className='m-5 '>{item.date}</p>
+                           <p>
+                              {
+                                 item.name === '' ? (
+                                    <p className='text-red-500
+                                    '>
+                                       Name is not Added
+                                    </p>
+                                 ) : (
+                                    <p className='text-green-500'>
+                                       Name is Added
+                                    </p>
+                                 )
+                              }
+
+                           </p>
+                        </div>
+                        <div>
+                           <img
+                              className='
+                              w-[30px] h-[30px]
+                              '
+                              onClick={() => handleDelete(item.id)}
+                              src={CANCEL} alt="" />
+                        </div>
+
+                  </div>
+               ))
+
+
+            }
+            {dataState.length === 0 &&
+               <div className='text-center text-slate-200'>
+                  No data found. Add some data in the form above.
+               </div>}
          </div>
 
-         <div className=''>
+         {/* <div className=''>
             {dataState.map((item) => (
-               <div key={item.id} className='font-mono'>
-                  <div className='data flex items-center  text-slate-900 text-wrap '>
+               <div key={item.id} >
+                  <div className=' data flex items-center  text-slate-900 text-wrap '>
 
                      <span className='ml-5 text-[17px]'>NANE: {item.name}</span>
 
@@ -102,38 +169,32 @@ export default function FireStore() {
 
                </div>
             ))}
-         </div>
-         <footer className='cursor-pointer text-center mt-[3rem] font-mono text-slate-100'>
+         </div> */}
+         <footer className='cursor-pointer text-center mt-[3rem] font-mono text-blue-200'>
             <p>
-               <span className='text-slate-700'>Powered by: </span>
+               <span className='text-red-700'>Powered by: </span>
                <a href='https://firebase.google.com/' target='_blank'>Firebase</a> |{' '}
                <a href='https://reactjs.org/' target='_blank'>React</a> |{' '}
                <a href='https://tailwindcss.com/' target='_blank'>Tailwind CSS</a>
-
             </p>
+            <div>
+               <p className='text-slate-200'>Version: 1.0.0</p>
+               <p>
+                  Designed and developed by{' '}
 
-            {/* <p>
-               <span className='text-slate-700'>�� 2023 </span>
-               <a href='https://www.saver.com/' target='_blank'>Saver</a>
-
-            </p>
-            <p>
-               <span className='text-slate-700'>Terms & Conditions</span>
-
-               <a href='https://www.saver.com/terms-and-conditions/' target='_blank'>
-                  Terms and Conditions
-               </a>
-            </p>
-            <p>
-               <span className='text-slate-700'>Privacy Policy</span>
-               <a href='https://www.saver.com/privacy-policy/' target='_blank'>
-                  Privacy Policy
-               </a>
-               <a href='https://www.saver.com/cookie-policy/' target='_blank'>
-                  Cookie Policy
-               </a>
-
-            </p> */}
+                  <a
+                     className='text-orange-400 underline' href='' target='_blank'>Salisu Yushau Sulaiman</a> {' '}
+                  &amp;{' '}
+                  <a
+                     className='text-orange-500 underline'
+                     href='https://github.com/codewithkin' target='_blank'>Kin Leon Zinzombe</a> {' '}
+                  {' '}
+                  <span>Copyright ©</span> {' '}
+                  <a href='https://githu' target='_blank'>GitHub</a> {' '}
+                  {' '}
+                  {new Date().getFullYear()}
+               </p>
+            </div>
          </footer>
       </div>
    )

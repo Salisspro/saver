@@ -9,38 +9,16 @@
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
 }
 
-.header {
-  font-size: 1em;
-  background: linear-gradient(-89deg, #fb00ff, #fd3198 32%, #fe4d5d 70%, #ff7900);
-  text-align: center;
-}
 
-.header:hover {
-  background: linear-gradient(-89deg, #ff00ff, #fd3198 32%, #fe4d5d 70%, #ff7900);
-  cursor: pointer;
-}
 body{
   background-color: #222121;
 }
 
-.sign {
-  font-size: 1em;
-  background: linear-gradient(-89deg, #fb00ff, #fd3198 32%, #fe4d5d 70%, #ff7900);
-  text-align: center;
-  border-radius: 5px;
-  padding: 1em;
-  cursor: pointer;
-  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
-  transition: filter 300ms;
-}
-
 .form {
+  background-color: #d16ba5;
   margin: 30px;
   gap: 1em;
   padding: 3em;
-  background: linear-gradient(-89deg, #fe4d5d, #ff7900);
-  border-radius: 5px;
-  transition: filter 300ms;
 
   .formContainer,
   input {
@@ -135,7 +113,7 @@ button {
   outline: none;
   box-shadow: 0 0 80px 0 rgba(0, 0, 0, 0.2);
   transition: box-shadow 300ms;
-  background-color: rgba(251, 253, 255, 0.616);
+  background-color: rgba(231, 232, 233, 0.977);
 
   &:hover {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -145,7 +123,7 @@ button {
 }
 
 .container {
-  background: linear-gradient(-89deg, #820a84, #fd3198 32%, #d66705);
+  background-color: #0265cf87;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }

@@ -1,7 +1,7 @@
 
+import { Button, Typography } from '@mui/material'
 import FireStore from '../fireStore/FireStore'
 import IMG from '../icon/vecteezy_businessman-on-rocket-launch-from-smartphone-concept-of_19924429.png'
-
 
 export default function Home() {
   return (
@@ -11,13 +11,24 @@ export default function Home() {
         <img
           className='w-[360px] h-[300px] md:w-[400px] md:h-auto md:rounded-none  mx-auto mb-5 '
           src={IMG} alt="" />
-        <div className='bg-[#cf6202] p-5 rounded-md text-slate-300 md:border-l-[3px] border-t-[3px] md:invisible-border-t'>
-          <h1 className='text-4xl font-mono font-semibold mt-7 mb-8'>Welcome to Saver!</h1>
-          <p className='font-mono'>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae laudantium expedita consequatur quis veniam officiis sequi commodi ipsam. Deleniti veritatis officiis dolor tempora deserunt autem temporibus similique quam nobis distinctio!
-          </p>
+        <div className='bg-[#0265cf] p-5 rounded-md text-slate-300 md:border-l-[1px] border-t-[1px] border-orange-400'>
+          <Typography 
+          sx={{mb: 2}}
+         variant='h2'>Welcome to Saver!</Typography>
+          <Typography 
+          className='text-amber-500 text-2xl'
+          sx={{ fontWeight: 'bold', fontSize: 20, }}
+          variant='body2'>
+            Please make sure to register...
+          </Typography>
+          <Typography variant='body1'>
+          Saver is a simple, secure, and convenient way to save documents. With our app, you can easily track your documents, set reminders, and even see a visual representation of your progress.
+          </Typography>
           <a href="Sign">
-            <button className="shadow-[0_0_10px_black] btn p-5 rounded-lg text-slate-200 mt-[1.5em] w-full">Sign in to get started</button>
+          
+            <Button 
+            sx={{p: 2, mt: 2}}
+            variant='contained'> Sign In To Get Sarted</Button>
           </a>
         </div>
 

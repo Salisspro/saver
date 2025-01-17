@@ -14,10 +14,11 @@ export default function Sign() {
    const handleSign = async () => {
       try {
          await createUserWithEmailAndPassword(auth, email, password)
-         
       } catch (err) {
          console.log(err)
       }
+      
+
       setEmail("")
       setPassword("")
    }
@@ -42,7 +43,7 @@ export default function Sign() {
 
 
    return (
-      <div className="grid md:grid-cols-2 form grid-cols-1 items-center justify-center border-purple-700 border-l-[3px]">
+      <div className="grid md:grid-cols-2 form grid-cols-1 items-center justify-center border-slate-200 border-l-[3px]">
          <ImageSign />
 
          <div className="my-10">
@@ -55,22 +56,17 @@ export default function Sign() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   type="password" placeholder="Password" required />
-               <div >
-                  <button
 
-                     onClick={handleSign}
-                     type="submit">Sign In</button>
-               </div>
             </div>
-            <div className=' text-slate-800 text-center flext items-center justify-center flex-col p-2'>
+            <div className='grid'>
+               <button
+                  onClick={handleSign}
+                  type="submit">Sign In</button>
 
-
-               <div className="font-semibold">
-                  <button onClick={handleSignWithGoogle}>Continue with Google</button>
-               </div>
+               <button onClick={handleSignWithGoogle}>Continue with Google</button>
                <button onClick={handleLogout}>Log out</button>
 
-               <p className='text-emerald-800 font-semibold text-[17px]'>Do not have an account? <a href="/signup"
+               <p className='text-center text-emerald-800 font-semibold text-[17px]'>Do not have an account? <a href="/signup"
                   className='text-blue-800'>Sign Up</a></p>
 
             </div>
