@@ -15,7 +15,7 @@ body{
 }
 
 .form {
-  background-color: #d16ba5;
+  background-color: #fcfbfb;
   margin: 30px;
   gap: 1em;
   padding: 3em;
@@ -136,3 +136,20 @@ button {
   }
 }
 
+.cancel{
+
+  margin-top: 1em;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: #f53737;
+  color: #fff;
+  transition: background-color 300ms;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: #f02424;
+  }
+
+}

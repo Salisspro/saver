@@ -6,10 +6,15 @@ import IMG from '../icon/vecteezy_businessman-on-rocket-launch-from-smartphone-c
 export default function Home() {
   return (
     <>
+        <Button
+        sx={{mb:10}}
+         variant="contained" color="primary" href="/Sign">
+        Sign Up
+      </Button>
       <div className=' mx-5  grid items-center justify-center flex-col md:grid-cols-2 mb-[3rem]'>
 
         <img
-          className='w-[360px] h-[300px] md:w-[400px] md:h-auto md:rounded-none  mx-auto mb-5 '
+          className='w-[360px] h-[300px] md:w-[400px] md:h-auto md:rounded-none  mx-auto mb-10 '
           src={IMG} alt="" />
         <div className='bg-[#0265cf] p-5 rounded-md text-slate-300 md:border-l-[1px] border-t-[1px] border-orange-400'>
           <Typography 

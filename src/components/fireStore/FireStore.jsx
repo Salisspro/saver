@@ -3,22 +3,28 @@ import { useEffect } from 'react'
 import { db } from '../configs/fireBase'
 import { collection, deleteDoc, doc, getDocs, addDoc } from 'firebase/firestore'
 import { useState } from 'react'
-import CANCEL from '../icon/red-rejection-icon-render-3d-rejected-sign-check-mark-cross-sign-can-be-used-as-symbols-of-wrong-close-deny-etc-created-for-mobile-web-decor-application-illustration-with-clipping-path-png.png'
 import { TextField, Button, Typography } from '@mui/material'
+// import IMG1 from '../fireStore/icons/vecteezy_hand-painted-rejected-sign_22000017.png'
+import IMG2 from '../fireStore/icons/vecteezy_hand-painted-rejected-sign_22056366.png'
+import IMG3 from '../fireStore/icons/3d-green-checklist-with-checkmark-symbol-png.png'
+import Sign from '../pages/Sign'
 
 export default function FireStore() {
    const [dataState, setDataState] = useState([])
+   const [loading, setLoading] = useState(false)
 
    // const [addDate, setAddDate] = useState(0)
    const [newName, setNewName] = useState('')
    const [newCity, setNewCity] = useState('')
 
-   // const [name, nameState] = useState()
+   // error messages
+   const [errorMessage, setErrorMessage] = useState(false)
 
 
    const collectionRef = collection(db, 'saver')
 
    const handleData = async () => {
+      setLoading(false)
       try {
          const data = await getDocs(collectionRef)
          const dataRef = data.docs.map((doc) => ({
@@ -26,6 +32,7 @@ export default function FireStore() {
             id: doc.id
          }))
          setDataState(dataRef)
+         // setLoading(!loading)
          // console.log(dataRef);
       } catch (err) {
          console.error('err ', err);
@@ -52,6 +59,7 @@ export default function FireStore() {
          })
       } catch (err) {
          console.error('err ', err);
+         setErrorMessage(true)
       }
       setNewName('')
       setNewCity('')
@@ -60,14 +68,29 @@ export default function FireStore() {
 
    return (
       <div className='bg-cover container mt-[5rem] grid px-3 max-w-[100%] mx-auto p-10 border-t-[1px] border-orange-400'>
+         {
+            loading && <Typography variant='h2'>Loading...</Typography>
+         }
 
          <div className='grid '>
 
             <h1 className='mb-5 text-2xl font-mono text-slate-200'>Data State: {dataState.length}</h1>
-            {/* <h1>Add Data: {addDate}</h1> */}
+
+            {
+               errorMessage && (
+                  <div className='text-red-500 uppercase mb-2 animate-pulse'>
+                     <p >
+                        {errorMessage}
+                        Please make sure you register to the web
+                     </p>
+                  </div>
+               )
+            }
+
             <TextField
+               autoCorrect=''
                label='Add Name'
-               variant='standard'
+               variant='outlined'
                onChange={(e) => setNewName(e.target.value)}
                value={newName}
 
@@ -76,7 +99,7 @@ export default function FireStore() {
             <TextField
                sx={{ mt: 5, mb: 5, border: 'none' }}
                label='City Name'
-               variant='standard'
+               variant='outlined'
                value={newCity}
                onChange={(e) => setNewCity(e.target.value)}
 
@@ -89,87 +112,72 @@ export default function FireStore() {
                variant='contained'>Add to Saver</Button>
 
          </div>
-         <div className='flex items-center flex-wrap md:grid-cols-3 '>
+         <div className=''>
 
             {
                dataState.map((item) => (
                   <div
-                     className='grid md:grid-cols-3 font-mono my-5 mx-5 border-2 border-slate-900 bg-white rounded-md p-5 cursor-pointer hover:bg-slate-200 transition-all duration-300 '
+                     className='grid font-mono my-5 mx-5 border-2 border-slate-900 bg-white rounded-md p-5 cursor-pointer hover:bg-slate-200 transition-all duration-300 items-center md:grid-cols-2 md:p-[7rem] md:text-[20px]'
                      key={item}>
 
-                        <div>
-                           <Typography
+                     <div>
+                        <Typography
 
-                              variant='body1'>
-                              NAME: {item.name}
-                           </Typography>
+                           variant='body1'>
+                           NAME: {item.name}
+                        </Typography>
 
-                           <Typography variant='body1'> CITY: {item.city}</Typography>
-                           <del>User ID: {item.id}</del>
+                        <Typography variant='body1'> CITY: {item.city}</Typography>
+                        <del>User ID: {item.id}</del>
 
-                        </div>
+                     </div>
 
+                     <div>
 
-                        <div>
-
-                           <p className='m-5 '>{item.date}</p>
-                           <p>
-                              {
-                                 item.name === '' ? (
-                                    <p className='text-red-500
+                        <p className='m-5 '>{item.date}</p>
+                        <p>
+                           {
+                              item.name === '' ? (
+                                 <p className='text-red-500 flex items-center my-2 gap-2 animate-pulse
                                     '>
-                                       Name is not Added
-                                    </p>
-                                 ) : (
-                                    <p className='text-green-500'>
-                                       Name is Added
-                                    </p>
-                                 )
-                              }
+                                    Name is not Added
+                                    <img
+                                       className='w-3 h-3'
+                                       src={IMG2} alt="" />
+                                 </p>
+                              ) : (
+                                 <p className='flex  items-center gap-3 text-green-500'>
+                                    Name is Added
+                                    <img
+                                       className='w-4 h-4'
+                                       src={IMG3} alt="" />
+                                 </p>
+                              )
+                           }
 
-                           </p>
-                        </div>
-                        <div>
-                           <img
-                              className='
-                              w-[30px] h-[30px]
-                              '
-                              onClick={() => handleDelete(item.id)}
-                              src={CANCEL} alt="" />
-                        </div>
+                        </p>
+                     </div>
+                     <div
+                        onClick={() => handleDelete(item.id)}
+                        className='cancel text-center '>
+                        DELETE
+                     </div>
 
                   </div>
                ))
 
 
             }
+            {!dataState.length && <div>
+               <Sign />
+            </div>}
+
             {dataState.length === 0 &&
                <div className='text-center text-slate-200'>
                   No data found. Add some data in the form above.
                </div>}
          </div>
 
-         {/* <div className=''>
-            {dataState.map((item) => (
-               <div key={item.id} >
-                  <div className=' data flex items-center  text-slate-900 text-wrap '>
-
-                     <span className='ml-5 text-[17px]'>NANE: {item.name}</span>
-
-                     <span className='ml-5 text-[17px]'>CITY: {item.city}</span>
-                     <p className='m-5 '>{item.date}</p>
-
-                     <img
-                        className='
-                        w-[30px] h-[30px]
-                        '
-                        onClick={() => handleDelete(item.id)}
-                        src={CANCEL} alt="" />
-                  </div>
-
-               </div>
-            ))}
-         </div> */}
          <footer className='cursor-pointer text-center mt-[3rem] font-mono text-blue-200'>
             <p>
                <span className='text-red-700'>Powered by: </span>
@@ -183,15 +191,13 @@ export default function FireStore() {
                   Designed and developed by{' '}
 
                   <a
-                     className='text-orange-400 underline' href='' target='_blank'>Salisu Yushau Sulaiman</a> {' '}
+                     className='text-orange-400 underline' href='https://github.com/Salisspro/saver' target='_blank'>Salisu Yushau Sulaiman</a> {' '}
                   &amp;{' '}
                   <a
                      className='text-orange-500 underline'
                      href='https://github.com/codewithkin' target='_blank'>Kin Leon Zinzombe</a> {' '}
                   {' '}
-                  <span>Copyright ©</span> {' '}
-                  <a href='https://githu' target='_blank'>GitHub</a> {' '}
-                  {' '}
+                  <span>©Copyright</span> {' '}
                   {new Date().getFullYear()}
                </p>
             </div>

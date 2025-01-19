@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 import ImageSign from "./ImageSign";
 import { auth } from "../configs/fireBase";
 import { provider } from "../configs/fireBase";
@@ -9,16 +9,17 @@ export default function Sign() {
 
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState("")
-
+   //error message
+   const [errorMessage, setErrorMessage] = useState(false)
+   //crear error message
 
    const handleSign = async () => {
       try {
          await createUserWithEmailAndPassword(auth, email, password)
       } catch (err) {
          console.log(err)
+         setErrorMessage(err.message)
       }
-      
-
       setEmail("")
       setPassword("")
    }
@@ -39,6 +40,7 @@ export default function Sign() {
       }
       setEmail("")
       setPassword("")
+      alert('successfully logged out')
    }
 
 
@@ -47,11 +49,14 @@ export default function Sign() {
          <ImageSign />
 
          <div className="my-10">
+            {errorMessage && <div className='text-red-500 mb-2 animate-pulse'>{errorMessage}</div>}
+
             <div className="grid items-center">
                <input
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   type="text" placeholder="Email" required />
+
                <input
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -64,7 +69,14 @@ export default function Sign() {
                   type="submit">Sign In</button>
 
                <button onClick={handleSignWithGoogle}>Continue with Google</button>
-               <button onClick={handleLogout}>Log out</button>
+
+
+               <button onClick={handleLogout}>
+               <a href="/home">
+                  Log out
+               </a>
+                  </button>
+                  
 
                <p className='text-center text-emerald-800 font-semibold text-[17px]'>Do not have an account? <a href="/signup"
                   className='text-blue-800'>Sign Up</a></p>

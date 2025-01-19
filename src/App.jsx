@@ -5,15 +5,13 @@ import About from './components/pages/About'
 import Home from './components/pages/Home'
 import Header from './components/pages/Header'
 import Sign from './components/pages/Sign'
-import {Button } from '@mui/material'
+// import {Button } from '@mui/material'
 function App() {
   return (
     <div className=''>
       <Router>
         <Header />
-      <Button variant="contained" color="primary" href="/Sign">
-        Sign Up
-      </Button>
+      
 
         <Routes>
           <Route path='/' element={<Home />} />
