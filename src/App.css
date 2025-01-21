@@ -11,35 +11,25 @@
 
 
 body{
-  background-color: #222121;
+  background-color: #040114d4;
 }
 
 .form {
-  background-color: #fcfbfb;
+  background-color: #0875c2;
   margin: 30px;
   gap: 1em;
   padding: 3em;
 
   .formContainer,
+
   input {
-    width: 100%;
-    padding: 0.5em;
-    border-radius: 5px;
     border: none;
     outline: none;
     margin-bottom: 1em;
-    box-shadow: 0 0 80px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 80px 0 rgba(0, 0, 0, 0.4);
     padding: 10px;
 
   }
-}
-
-.form:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-  cursor: pointer;
-  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
-  transition: filter 700ms;
-
 }
 
 .nav {
@@ -150,6 +140,30 @@ button {
   
   &:hover {
     background-color: #f02424;
+  }
+
+}
+
+textarea{
+  margin-bottom: 1em;
+  padding: 15px;
+  /* border-radius: 5px; */
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 80px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow 300ms;
+  resize: none;
+  min-height: 150px;
+  max-height: 300px;
+  overflow-y: auto;
+  &:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    overflow-y: scroll;
+    max-height: 300px;
+    min-height: 150px;
+    resize: vertical;
   }
 
 }

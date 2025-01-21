@@ -20,8 +20,8 @@ export default function Header() {
 
 
   return (
-    <div 
-    className="bg-blue-500 flex px-5 mb-[100px] text-slate-900 shadow-[0_0_10px_black] items-center justify-between space-x-10 p-5">
+    <div
+      className="bg-blue-500 flex px-5 mb-[100px] text-slate-900 shadow-[0_0_10px_black] items-center justify-between space-x-5 p-5 text-center">
       <div>
         <img
           className='w-[200px] md:w-[300px]'
@@ -31,6 +31,7 @@ export default function Header() {
       <div
 
         className='nav ' >
+
 
         <img
           onClick={handleModalChange}
@@ -43,9 +44,15 @@ export default function Header() {
               <a href="/"
                 className='hover:border p-2 rounded-md bg-slate-900 w-[100px] shadow-[0_0_10px_white] transition-all '
               >Home</a>
+
               <a href="/About"
                 className='hover:border p-2 rounded-md bg-slate-900 w-[100px] shadow-[0_0_10px_white]'
               >About</a>
+
+
+              <a href="/Profile"
+                className='hover:border p-2 rounded-md bg-slate-900 w-[100px] shadow-[0_0_10px_white]'
+              >Profile</a>
             </div>
 
             <div className='icons space-x-5 '>

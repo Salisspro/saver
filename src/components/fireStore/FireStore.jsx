@@ -16,6 +16,7 @@ export default function FireStore() {
    // const [addDate, setAddDate] = useState(0)
    const [newName, setNewName] = useState('')
    const [newCity, setNewCity] = useState('')
+   const [newStory, setNewStory] = useState('')
 
    // error messages
    const [errorMessage, setErrorMessage] = useState(false)
@@ -50,10 +51,13 @@ export default function FireStore() {
 
    const handleAdd = async () => {
       try {
+         if(newName.length === '' || newCity.length === "") {
+            setLoading(false)
+         }
          await addDoc(collectionRef, {
-
             name: newName,
             city: newCity,
+            story: newStory,
             date: new Date().getTime() + '-' + new Date(),
 
          })
@@ -63,55 +67,86 @@ export default function FireStore() {
       }
       setNewName('')
       setNewCity('')
+      setNewStory('')
       handleData()
    }
+   setTimeout(() => {
+      setErrorMessage(false)
+   }, 10000)
 
    return (
-      <div className='bg-cover container mt-[5rem] grid px-3 max-w-[100%] mx-auto p-10 border-t-[1px] border-orange-400'>
+      <div className='bg-cover container mt-[5rem] grid px-5 max-w-[100%] mx-auto p-10 border-t-[3px] border-slate-200'>
+         {dataState.length === 0 &&
+            <Typography
+               variant='body2'
+               className='text-center text-slate-200'>
+               No data found. Add some data in the form above.
+            </Typography>}
          {
             loading && <Typography variant='h2'>Loading...</Typography>
          }
 
-         <div className='grid '>
+         <div className='grid md:grid-cols-2 items-center space-x-10'>
+            <div className='grid'>
 
-            <h1 className='mb-5 text-2xl font-mono text-slate-200'>Data State: {dataState.length}</h1>
+               <h1 className='mb-5 text-2xl font-mono text-slate-200'>Data State: {dataState.length}</h1>
 
-            {
-               errorMessage && (
-                  <div className='text-red-500 uppercase mb-2 animate-pulse'>
-                     <p >
-                        {errorMessage}
-                        Please make sure you register to the web
-                     </p>
-                  </div>
-               )
-            }
+               {
+                  errorMessage && (
+                     <div className='text-red-500 uppercase mb-2 animate-pulse'>
+                        <p >
+                           {errorMessage}
+                           Please make sure you register to the web
+                        </p>
+                     </div>
+                  )
+               }
 
-            <TextField
-               autoCorrect=''
-               label='Add Name'
-               variant='outlined'
-               onChange={(e) => setNewName(e.target.value)}
-               value={newName}
+               <TextField
+                  autoCorrect=''
+                  label='Add Name'
+                  variant='filled'
+                  onChange={(e) => setNewName(e.target.value)}
+                  value={newName}
 
-            />
+               />
 
-            <TextField
-               sx={{ mt: 5, mb: 5, border: 'none' }}
-               label='City Name'
-               variant='outlined'
-               value={newCity}
-               onChange={(e) => setNewCity(e.target.value)}
+               <TextField
+                  sx={{ mt: 5, mb: 5, border: 'none' }}
+                  label='City Name'
+                  variant='filled'
+                  value={newCity}
+                  onChange={(e) => setNewCity(e.target.value)}
 
-            />
+               />
 
-            <Button
-               onClick={handleAdd}
-               color='info'
-               sx={{ px: 5, mb: 5, p: 2, border: 'none' }}
-               variant='contained'>Add to Saver</Button>
 
+               <textarea
+                  value={newStory}
+                  onChange={e => setNewStory(e.target.value)}
+                  className='p-2 mb-5 font-mono'
+                  placeholder='Add Your Story' />
+
+               <Button
+                  onClick={handleAdd}
+                  color='info'
+                  sx={{ px: 5, mb: 5, p: 2, border: 'none' }}
+                  variant='contained'>Add to Saver</Button>
+
+            </div>
+
+            <div className='m-0'>
+               <Typography
+                  className='invisible md:visible'
+                  variant='body2'
+                  sx={{ color: 'white' }}>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, odio. Nisi, nobis? Ducimus maxime asperiores ipsam, quis consectetur et corporis amet eos deserunt quo? Facere animi accusantium eos cumque veniam.
+                  {/* {dataState.length === 0 && 'No Data Found'} */}
+               </Typography>
+            </div>
          </div>
+
+
          <div className=''>
 
             {
@@ -122,19 +157,29 @@ export default function FireStore() {
 
                      <div>
                         <Typography
+                           className='uppercase'
 
                            variant='body1'>
                            NAME: {item.name}
                         </Typography>
 
-                        <Typography variant='body1'> CITY: {item.city}</Typography>
-                        <del>User ID: {item.id}</del>
+                        <Typography
+                           className='uppercase'
+                           variant='body1'> CITY: {item.city}</Typography>
+                        {/* <del>User ID: {item.id}</del> */}
 
+                     </div>
+                     <div>
+                        <p style={{fontFamily: 'cursive'}}>
+                           Story: {item.story}
+                        </p>
                      </div>
 
                      <div>
 
                         <p className='m-5 '>{item.date}</p>
+
+
                         <p>
                            {
                               item.name === '' ? (
@@ -165,22 +210,17 @@ export default function FireStore() {
 
                   </div>
                ))
-
-
             }
             {!dataState.length && <div>
                <Sign />
             </div>}
 
-            {dataState.length === 0 &&
-               <div className='text-center text-slate-200'>
-                  No data found. Add some data in the form above.
-               </div>}
+
          </div>
 
          <footer className='cursor-pointer text-center mt-[3rem] font-mono text-blue-200'>
             <p>
-               <span className='text-red-700'>Powered by: </span>
+               <span>Powered by: </span>
                <a href='https://firebase.google.com/' target='_blank'>Firebase</a> |{' '}
                <a href='https://reactjs.org/' target='_blank'>React</a> |{' '}
                <a href='https://tailwindcss.com/' target='_blank'>Tailwind CSS</a>
@@ -191,13 +231,16 @@ export default function FireStore() {
                   Designed and developed by{' '}
 
                   <a
-                     className='text-orange-400 underline' href='https://github.com/Salisspro/saver' target='_blank'>Salisu Yushau Sulaiman</a> {' '}
+                     className='text-blue-400 underline' href='https://github.com/Salisspro/saver' target='_blank'>Salisu Yushau Sulaiman</a> {' '}
                   &amp;{' '}
                   <a
-                     className='text-orange-500 underline'
-                     href='https://github.com/codewithkin' target='_blank'>Kin Leon Zinzombe</a> {' '}
-                  {' '}
-                  <span>©Copyright</span> {' '}
+                     className='text-blue-400 underline'
+                     href='https://github.com/codewithkin' target='_blank'>Kin Leon Zinzombe</a> <br />
+                  <span className='text-[20px]'>©
+                     <span>
+                        copyright
+                     </span>
+                  </span> {' '}
                   {new Date().getFullYear()}
                </p>
             </div>
