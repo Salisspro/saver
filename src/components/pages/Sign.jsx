@@ -53,48 +53,49 @@ export default function Sign() {
    }, 5000)
 
    return (
-      <div className="p-2 m-2">
-         <ImageSign />
+      <>
+         <div className="p-2 m-2">
+            <ImageSign />
 
-         <div className="">
-            {errorMessage && <Typography className='text-red-700 mb-2'>{errorMessage}</Typography>}
+            <div className="">
+               {errorMessage && <Typography className='text-red-700 mb-2'>{errorMessage}</Typography>}
 
-               {/* <p>Email: {currentUser.email}</p> */}
-            <div className="grid items-center m-2">
-               <input
-               className="p-2"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  type="text" placeholder="Email" required />
-                  
+               <div className="grid items-center m-2">
                   <input
-                  className="w-46 mt-2 p-2"
+                     className="p-2"
+                     value={email}
+                     onChange={(e) => setEmail(e.target.value)}
+                     type="text" placeholder="Email" required />
+
+                  <input
+                     className="w-46 mt-2 p-2"
                      value={password}
                      onChange={(e) => setPassword(e.target.value)}
                      type="password" placeholder="Password" required />
 
+               </div>
+               <div className='grid'>
+                  <button className="w-"
+                     onClick={handleSign}
+                     type="submit">Sign In</button>
+
+                  <button onClick={handleSignWithGoogle}>Continue with Google</button>
+
+
+                  <button onClick={handleLogout}>
+                     <a href="/home">
+                        Log out
+                     </a>
+                  </button>
+
+
+                  <p className='text-center text-emerald-800 font-semibold text-[17px]'>Do not have an account? <a href="/signup"
+                     className='text-blue-800'>Sign Up</a></p>
+
+               </div>
             </div>
-            <div className='grid'>
-               <button className="w-"
-                  onClick={handleSign}
-                  type="submit">Sign In</button>
 
-               <button onClick={handleSignWithGoogle}>Continue with Google</button>
-
-
-               <button onClick={handleLogout}>
-                  <a href="/home">
-                     Log out
-                  </a>
-               </button>
-
-
-               <p className='text-center text-emerald-800 font-semibold text-[17px]'>Do not have an account? <a href="/signup"
-                  className='text-blue-800'>Sign Up</a></p>
-
-            </div>
          </div>
-
-      </div>
+      </>
    )
 }
