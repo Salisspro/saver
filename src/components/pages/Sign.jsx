@@ -89,8 +89,8 @@ export default function Sign() {
                   </button>
 
 
-                  <p className='text-center  font-semibold text-[17px]'>Do not have an account? <a href="/signup"
-                     className='text-blue-800'>Sign Up</a></p>
+                  <p className='text-center text-sm'>Do not have an account? <a href="/signup"
+                     className='underline underline-offset-3'>Sign Up</a></p>
 
                </div>
             </div>

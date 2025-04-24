@@ -19,9 +19,9 @@ export default function Home() {
         <div className='p-3 bg-[#0353a9]  text-slate-300 md:border-l-[3px] border-t-[3px] border-slate-400'>
           <Typography
           sx={{mb: 2}}
-         variant='h2'>Welcome to Saver!</Typography>
+         variant='h5' className=''>Welcome to Saver!</Typography>
 
-          <p className='font-mono'>
+          <p className=''>
           Saver is a simple, secure, and convenient way to save documents. With our app, you can easily track your documents, set reminders, and even see a visual representation of your progress.
           </p>
           <a href="Sign">

@@ -38,15 +38,15 @@ export default function Header() {
           className='md:w-[50px] w-[30px] space-x-5  md:invisible'
           src={IMG} alt="" />
         {
-          modal && <div className='md:invisible modal'>
+          modal && <div className='md:invisible modal -mr-5'>
             <div className='text-slate-100 ml-5
-            mt-7 flex items-center space-x-5 font-mono text-[18px] '>
+            mt-7 flex items-center space-x-5 font-mono text-[18px] min-h-screen'>
               <a href="/"
-                className='hover:border p-2 rounded-md bg-slate-900 w-[100px] shadow-[0_0_10px_white] transition-all '
+                className='hover:border p-2 rounded-md bg-slate-900 shadow-[0_0_10px_white] transition-all '
               >Home</a>
 
               <a href="/About"
-                className='hover:border p-2 rounded-md bg-slate-900 w-[100px] shadow-[0_0_10px_white]'
+                className='hover:border p-2 rounded-md bg-slate-900  shadow-[0_0_10px_white]'
               >About</a>
 
 

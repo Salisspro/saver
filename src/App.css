@@ -14,6 +14,23 @@ body{
   background-color: #040114d4;
 }
 
+.form {
+  background-color: #0875c2;
+  margin: 30px;
+  gap: 1em;
+  padding: 3em;
+
+  .formContainer,
+
+  input {
+    border: none;
+    outline: none;
+    margin-bottom: 1em;
+    box-shadow: 0 0 80px 0 rgba(0, 0, 0, 0.4);
+    padding: 10px;
+
+  }
+}
 
 .nav {
   justify-content: space-between;
@@ -23,15 +40,32 @@ body{
 }
 
 .modal {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  z-index: 1;
-  /* justify-content: space-between; */
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  
+  top: 0;
+  right: 1em;
+background-color: black;
+z-index: 1;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 0 0 80px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow 300ms;
+  /* background-color: #fff; */
+  color: #000;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+
+  &:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    transition: box-shadow 300ms;
+    z-index: -1;
+    
+  }
 }
 
 .icons {
