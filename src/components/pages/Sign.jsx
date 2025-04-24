@@ -54,7 +54,7 @@ export default function Sign() {
 
    return (
       <>
-         <div className="p-2 m-2">
+         <div className="p-2 m-2 text-slate-200">
             <ImageSign />
 
             <div className="">
@@ -62,34 +62,34 @@ export default function Sign() {
 
                <div className="grid items-center m-2">
                   <input
-                     className="p-2"
+                     className="rounded-sm p-2 text-slate-700 outline-none"
                      value={email}
                      onChange={(e) => setEmail(e.target.value)}
                      type="text" placeholder="Email" required />
 
                   <input
-                     className="w-46 mt-2 p-2"
+                     className="rounded-sm outline-none w-68 mt-2 p-2 text-slate-600"
                      value={password}
                      onChange={(e) => setPassword(e.target.value)}
                      type="password" placeholder="Password" required />
 
                </div>
                <div className='grid'>
-                  <button className="w-"
+                  <button className=""
                      onClick={handleSign}
                      type="submit">Sign In</button>
 
-                  <button onClick={handleSignWithGoogle}>Continue with Google</button>
+                  <button className="" onClick={handleSignWithGoogle}>Continue with Google</button>
 
 
-                  <button onClick={handleLogout}>
+                  <button className="" onClick={handleLogout}>
                      <a href="/home">
                         Log out
                      </a>
                   </button>
 
 
-                  <p className='text-center text-emerald-800 font-semibold text-[17px]'>Do not have an account? <a href="/signup"
+                  <p className='text-center  font-semibold text-[17px]'>Do not have an account? <a href="/signup"
                      className='text-blue-800'>Sign Up</a></p>
 
                </div>
