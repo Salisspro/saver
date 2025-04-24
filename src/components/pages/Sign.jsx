@@ -56,7 +56,7 @@ export default function Sign() {
       <div className="grid md:grid-cols-2 form grid-cols-1 items-center justify-center border-slate-200 border-l-[3px]">
          <ImageSign />
 
-         <div className="my-5">
+         <div className="">
             {errorMessage && <Typography className='text-red-700 mb-2'>{errorMessage}</Typography>}
 
                {/* <p>Email: {currentUser.email}</p> */}

@@ -16,7 +16,7 @@ export default function Profile() {
 
    const { currentUser } = getAuth()
    return (
-      <div className='bg-slate-200 p-10'>
+      <div className='bg-slate-200 '>
          <Typography variant="h2" className="">Profile</Typography>
          <p>This is the profile page</p>
          {currentUser && <p>Email: {currentUser.email}</p>}

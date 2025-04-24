@@ -10,7 +10,7 @@ import Profile from './components/pages/Profile'
 
 function App() {
   return (
-    <div className=''>
+    <div className='min-h-screen'>
       <Router>
         <Header />
         <Routes>

@@ -2,7 +2,7 @@ import IMG from '../icons/react.svg'
 export default function About() {
   return (
     <div>
-        <figure className="border-sky-600 border-l-[5px] md:flex rounded- p-8 md:p-0 bg-[#d9414e] mx-5">
+        <figure className="border-sky-600 border-l-[5px] md:flex  md:p-0 bg-[#d9414e] ">
       <img className='w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto width="384" height="512"'
       src={IMG} alt="" />
           <div className="pt-6 md:p-8 text-center md:text-left space-y-4">
