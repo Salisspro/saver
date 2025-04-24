@@ -53,27 +53,29 @@ export default function Sign() {
    }, 5000)
 
    return (
-      <div className="grid md:grid-cols-2 form grid-cols-1 items-center justify-center border-slate-200 border-l-[3px]">
+      <div className="p-2 m-2">
          <ImageSign />
 
          <div className="">
             {errorMessage && <Typography className='text-red-700 mb-2'>{errorMessage}</Typography>}
 
                {/* <p>Email: {currentUser.email}</p> */}
-            <div className="grid items-center">
+            <div className="grid items-center m-2">
                <input
+               className="p-2"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   type="text" placeholder="Email" required />
                   
                   <input
+                  className="w-46 mt-2 p-2"
                      value={password}
                      onChange={(e) => setPassword(e.target.value)}
                      type="password" placeholder="Password" required />
 
             </div>
             <div className='grid'>
-               <button
+               <button className="w-"
                   onClick={handleSign}
                   type="submit">Sign In</button>
 
